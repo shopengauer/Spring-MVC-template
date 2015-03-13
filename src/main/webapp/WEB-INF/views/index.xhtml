@@ -5,12 +5,16 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>User data</title>
+          <!--<meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8"/>-->
+        <meta name="viewport" content="charset=UTF-8,width=device-width, initial-scale=1.0"/>
     </head>
     <body>
         <div>Index</div>
+        <p th:text = "${user.firstName}"/>
+        <p th:text = "${user.lastName}"/>
     </body>
 </html>

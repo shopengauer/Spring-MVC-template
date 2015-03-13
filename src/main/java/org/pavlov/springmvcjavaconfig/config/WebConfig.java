@@ -5,6 +5,11 @@
  */
 package org.pavlov.springmvcjavaconfig.config;
 
+import java.util.HashMap;
+import java.util.Map;
+import org.pavlov.springmvcjavaconfig.model.User;
+import org.pavlov.springmvcjavaconfig.qualifiers.UserMap;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
@@ -27,6 +32,7 @@ class WebConfig extends WebMvcConfigurerAdapter{
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
+        
     }
 
     @Override
@@ -54,5 +60,10 @@ class WebConfig extends WebMvcConfigurerAdapter{
     
     }
  
+    @Bean
+    public User user(){
+        return new User();
+    }
+    
     
 }
