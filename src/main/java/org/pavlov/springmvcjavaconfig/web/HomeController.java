@@ -5,6 +5,9 @@
  */
 package org.pavlov.springmvcjavaconfig.web;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.pavlov.springmvcjavaconfig.model.User;
 import org.pavlov.springmvcjavaconfig.qualifiers.UserMap;
@@ -46,6 +49,7 @@ public class HomeController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String submitRegister(@ModelAttribute User user, Model model) {
         model.addAttribute("user", user);
+        model.addAttribute("map",new ArrayList<String>().add("sdc"));
         return "index";
     }
     
