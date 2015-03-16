@@ -16,14 +16,12 @@ public class User {
     
     private String firstName;
     private String lastName;
-    private String account;
+    private String userName;
     private String password;
 
     public User() {
     }
-
-    
-    
+ 
     
     
     public String getFirstName() {
@@ -42,13 +40,15 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getAccount() {
-        return account;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setAccount(String account) {
-        this.account = account;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
+
+    
 
     public String getPassword() {
         return password;
