@@ -5,6 +5,10 @@
  */
 package org.pavlov.springmvcjavaconfig.model;
 
+ 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,10 +18,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class User {
     
+    @NotNull
+    @NotEmpty
+    @Size(min = 2,max = 15)
     private String firstName;
+    
     private String lastName;
+    
     private String userName;
+    
     private String password;
+    
 
     public User() {
     }
@@ -47,8 +58,7 @@ public class User {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-
-    
+ 
 
     public String getPassword() {
         return password;

@@ -19,29 +19,25 @@ and open the template in the editor.
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"/>  
     </head>
    <!--class = "form-inline"-->
-    <body>
-        <form th:object ="${user}" class = "form-inline" id = "mar" style="padding: 20px">
-            <div class="form-group">
-                <label th:class="${#fields.hasErrors('userName')}? 'error' : 'mar'">
-                    Username:
-                </label>
-                
-                <input type= "text" th:field ="*{userName}" 
-                       th:class = "${#fields.hasErrors('userName')}? 'error' : 'form-control'" placeholder="Username"/>
-               
-                <label th:class="${#fields.hasErrors('password')}? 'error'">
-                    Password:
-                </label>
-                <input type= "password" th:field ="*{password}" 
-                       th:class = "${#fields.hasErrors('password')}? 'error' : 'form-control'" placeholder="Password"/> 
+   <body>
+       <form th:object ="${user}" class = "form-inline" id = "mar">
+           <div class="form-group">
+               <label th:class="${#fields.hasErrors('userName')}? 'error' : 'mar'">
+                   Username:
+               </label>
 
-                <input type="submit" value="Sign in" class="btn btn-default"/>
-            <a th:href = "register">Registration</a>
-            </div>
-            
-       </form>
-<!--        <p th:text = "${user}"/>-->
-           
-        
+               <input type= "text" th:field ="*{userName}" 
+                      th:class = "${#fields.hasErrors('userName')}? 'error' : 'form-control'" placeholder="Username"/>
+
+               <label th:class="${#fields.hasErrors('password')}? 'error'">
+                   Password:
+               </label>
+               <input type= "password" th:field ="*{password}" 
+                      th:class = "${#fields.hasErrors('password')}? 'error' : 'form-control'" placeholder="Password"/> 
+
+               <input type="submit" value="Sign in" class="btn btn-default"/>
+               <a th:href = "register">Registration</a>
+           </div>
+        </form>
     </body>
 </html>
