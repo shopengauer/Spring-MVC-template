@@ -20,15 +20,14 @@ and open the template in the editor.
     </head>
    <!--class = "form-inline"-->
    <body>
-       <form th:object ="${user}" class = "form-inline" id = "mar">
-           <div class="form-group">
-               <label th:class="${#fields.hasErrors('userName')}? 'error' : 'mar'">
-                   Username:
-               </label>
+       <h1>Ensense</h1>
+       <form th:object ="${user}" class = "form-inline" id = "mar" method="post">
+           <div th:class = "${#fields.hasErrors('userName')}? 'form-group has-error' : 'form-group'">
+               <label class="control-label">Username: </label>
+               <input type= "text" th:field ="*{userName}" placeholder="Username" class = "form-control"/>
+           </div>
 
-               <input type= "text" th:field ="*{userName}" 
-                      th:class = "${#fields.hasErrors('userName')}? 'error' : 'form-control'" placeholder="Username"/>
-
+               
                <label th:class="${#fields.hasErrors('password')}? 'error'">
                    Password:
                </label>
@@ -37,7 +36,9 @@ and open the template in the editor.
 
                <input type="submit" value="Sign in" class="btn btn-default"/>
                <a th:href = "register">Registration</a>
-           </div>
+           
         </form>
+       
+       
     </body>
 </html>

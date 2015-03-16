@@ -7,12 +7,14 @@ package org.pavlov.springmvcjavaconfig.web;
 
 import java.util.ArrayList;
 import java.util.Map;
+import javax.validation.Valid;
 import org.pavlov.springmvcjavaconfig.model.User;
 import org.pavlov.springmvcjavaconfig.qualifiers.UserMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,10 +41,15 @@ public class HomeController {
     }
     
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public String signIn(@ModelAttribute User user,Model model) {
+    public String signIn(@Valid User user, Errors errors) {
+        if (errors.hasErrors()) {
+            return "home";
+          
+        } 
+         
+        return "index";
+       
         
-        model.addAttribute("user", new User());
-        return "home";
     }
     
     

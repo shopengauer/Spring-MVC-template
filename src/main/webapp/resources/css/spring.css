@@ -11,3 +11,8 @@ and open the template in the editor.
 #mar{background-color: burlywood; padding: 20px;}
 
 body{background-color: antiquewhite;}
+
+.error {
+background-color: #ffcccc;
+border: 2px solid red;
+}

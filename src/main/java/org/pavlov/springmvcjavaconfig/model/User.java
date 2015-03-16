@@ -18,14 +18,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class User {
     
-    @NotNull
-    @NotEmpty
-    @Size(min = 2,max = 15)
+    
     private String firstName;
     
     private String lastName;
     
+    @NotNull
+    @NotEmpty
+    @Size(min = 2,max = 15)
     private String userName;
+    
     
     private String password;
     
