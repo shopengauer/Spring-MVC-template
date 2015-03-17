@@ -20,25 +20,30 @@ and open the template in the editor.
     </head>
    <!--class = "form-inline"-->
    <body>
-       <h1>Ensense</h1>
-       <form th:object ="${user}" class = "form-inline" id = "mar" method="post">
+       <!--       <h1>Ensense server</h1>-->
+       <form th:object ="${user}" class = "form-inline bg-primary" id ="mar" method="post">
+
            <div th:class = "${#fields.hasErrors('userName')}? 'form-group has-error' : 'form-group'">
                <label class="control-label">Username: </label>
                <input type= "text" th:field ="*{userName}" placeholder="Username" class = "form-control"/>
            </div>
 
-               
-               <label th:class="${#fields.hasErrors('password')}? 'error'">
+           <div th:class = "${#fields.hasErrors('password')} ? 'form-group has-error' : 'form-group'">   
+               <label class="control-label">
                    Password:
                </label>
                <input type= "password" th:field ="*{password}" 
-                      th:class = "${#fields.hasErrors('password')}? 'error' : 'form-control'" placeholder="Password"/> 
+                      class = "form-control" placeholder="Password"/> 
 
                <input type="submit" value="Sign in" class="btn btn-default"/>
-               <a th:href = "register">Registration</a>
+           </div>
+           <a th:href = "register" class="label label-primary">Registration</a> 
+<!--           <ul th:if="${#fields.hasErrors('*')}">
+     <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+ </ul>-->
+           <p th:if="${#fields.hasErrors('all')}" th:errors="*{all}">Incorrect date</p>
            
-        </form>
-       
-       
-    </body>
+       </form>
+
+   </body>
 </html>

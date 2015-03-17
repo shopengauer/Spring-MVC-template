@@ -9,24 +9,48 @@ and open the template in the editor.
       xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Registration user</title>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
-
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="../resources/css/spring.css" th:href="@{/resources/css/spring.css}"/>
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"/>
 
         <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"/>  
     </head>
     <body>
-        <form action="#" th:action="@{/register}" th:object="${user}" method="post">
-            <label for="inputFirstName">Firstname:</label>    
-            <input id = "inputFirstName" type = "text" th:field ="*{firstName}"/> 
-         
-            <label for="inputLastName">Lastname:</label>    
-            <input id = "inputLastName" type = "text" th:field ="*{lastName}"/> 
-          
-            <input type="submit" value="Submit"/>   
-        </form>
+        <div class ="panel panel-primary marg">
+            <!--<div class ="panel-heading">Hello</div>-->
+            <div class ="panel-body">
+                <form action="#" class = "form-group" id = "registerForm" th:action="@{/register}" th:object="${user}" method="post">
+                    <div th:class = "${#fields.hasErrors('firstName')} ? 'form-group has-error':'form-group'"> 
+                        <!--<label class="control-label" for="inputFirstName">First Name:</label>-->    
+                        <input class = "form-control" id = "inputFirstName" placeholder="First Name" type = "text" th:field ="*{firstName}"/> 
+                    </div>
+
+                    <div th:class = "${#fields.hasErrors('lastName')} ? 'form-group has-error' : 'form-group'">
+                        <!--<label class="control-label" for="inputLastName">Last Name:</label>-->    
+                        <input class = "form-control" id = "inputLastName" placeholder="Last Name" type = "text" th:field ="*{lastName}"/> 
+                    </div>
+
+                    <div th:class = "${#fields.hasErrors('userName')} ? 'form-group has-error' : 'form-group'">
+                        <!--<label class="control-label" for="inputUserName">Username:</label>-->    
+                        <input class = "form-control" id = "inputUserName" placeholder="Username" type = "text" th:field ="*{userName}"/> 
+                    </div>
+
+                    <div th:class = "${#fields.hasErrors('password')} ? 'form-group has-error' : 'form-group'">
+                        <!--<label class="control-label" for="inputPassword">Password 1:</label>-->    
+                        <input class = "form-control" id = "inputPassword" placeholder="Password" type = "password" th:field ="*{password}"/> 
+                    </div>
+
+                    <div th:class = "${#fields.hasErrors('passVerify')} ? 'form-group has-error' : 'form-group'">
+                        <!--<label class="control-label" for="inputPassVerify">Password 2:</label>-->    
+                        <input class = "form-control" id = "inputPassVerify" placeholder="Verify password" type = "password" th:field ="*{passVerify}"/> 
+                    </div>
+
+                    <input type="submit" class="btn btn-primary btn-block" value="Register"/>   
+              </form>
+            </div>
+        </div>
     </body>
 </html>

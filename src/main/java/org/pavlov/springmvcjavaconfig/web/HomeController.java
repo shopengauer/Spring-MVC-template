@@ -56,7 +56,7 @@ public class HomeController {
     
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register(Model model) {
-         model.addAttribute("user", new User());
+        model.addAttribute("user", new User());
         return "registerForm";
     }
     

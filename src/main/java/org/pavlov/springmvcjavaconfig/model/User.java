@@ -6,6 +6,7 @@
 package org.pavlov.springmvcjavaconfig.model;
 
  
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -18,9 +19,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class User {
     
-    
+    @NotNull
+    @NotEmpty
+    @Size(min = 2,max = 15)
     private String firstName;
     
+    @NotNull
+    @NotEmpty
+    @Size(min = 2,max = 15)
     private String lastName;
     
     @NotNull
@@ -28,13 +34,24 @@ public class User {
     @Size(min = 2,max = 15)
     private String userName;
     
-    
+    @NotNull
+    @NotEmpty
+    @Size(min = 5,max = 15)
     private String password;
     
-
+     
+    private String passVerify;
+ 
+      
+    
     public User() {
     }
  
+    @AssertTrue
+    public boolean isValid(){
+      return this.password.equals(passVerify);
+    }
+    
     
     
     public String getFirstName() {
@@ -60,7 +77,6 @@ public class User {
     public void setUserName(String userName) {
         this.userName = userName;
     }
- 
 
     public String getPassword() {
         return password;
@@ -69,6 +85,17 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getPassVerify() {
+        return passVerify;
+    }
+
+    public void setPassVerify(String passVerify) {
+        this.passVerify = passVerify;
+    }
+ 
+
+    
     
     
     
