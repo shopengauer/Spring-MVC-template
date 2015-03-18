@@ -5,9 +5,11 @@
  */
 package org.pavlov.springmvcjavaconfig.web;
 
-import java.util.ArrayList;
 import java.util.Map;
+import java.util.Set;
+import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
+import javax.validation.Validator;
 import org.pavlov.springmvcjavaconfig.model.User;
 import org.pavlov.springmvcjavaconfig.qualifiers.UserMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +17,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -31,23 +33,36 @@ public class HomeController {
     @Value("#{userMap}")
     private  Map<String,String> userMap;
     
-//    @Autowired
-//    private  String user;
+    @Autowired
+    private Validator validator;
+        
+    @Autowired
+    private  User user;
   
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", this.user);
         return "home";
     }
     
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public String signIn(@Valid User user, Errors errors) {
-        if (errors.hasErrors()) {
-            return "home";
+    public String signIn(User user, Errors errors,RedirectAttributes model) {
+         
+       
+     Set<ConstraintViolation<User>> constraintUserUsername = 
+             validator.validateProperty(user, "userName");
+
+    // errors.rejectValue("userName", "Not appropriate");
+ 
+//      constraintUserUsername.size();
+//              
+        if (constraintUserUsername.isEmpty()) {
+           // model.addFlashAttribute(user);
+            return "redirect:index";
           
         } 
          
-        return "index";
+        return "home";
        
         
     }
@@ -61,9 +76,13 @@ public class HomeController {
     }
     
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String submitRegister(@ModelAttribute User user, Model model) {
-        model.addAttribute("user", user);
-        model.addAttribute("map",new ArrayList<String>().add("sdc"));
+    public String submitRegister(@Valid User user, Errors errors) {
+        
+    if (errors.hasErrors()) {
+            return "registerForm";
+          
+        } 
+         
         return "index";
     }
     
@@ -80,6 +99,22 @@ public class HomeController {
 
     public void setUserMap(Map<String, String> userMap) {
         this.userMap = userMap;
+    }
+
+    public Validator getValidator() {
+        return validator;
+    }
+
+    public void setValidator(Validator validator) {
+        this.validator = validator;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     

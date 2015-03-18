@@ -12,6 +12,9 @@ import org.pavlov.springmvcjavaconfig.qualifiers.UserMap;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -60,10 +63,5 @@ class WebConfig extends WebMvcConfigurerAdapter{
     
     }
  
-    @Bean
-    public User user(){
-        return new User();
-    }
-    
-    
+     
 }

@@ -7,13 +7,20 @@ package org.pavlov.springmvcjavaconfig.config;
 
 import java.util.HashMap;
 import java.util.Map;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import org.pavlov.springmvcjavaconfig.model.User;
 import org.pavlov.springmvcjavaconfig.qualifiers.UserMap;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 /**
@@ -36,11 +43,23 @@ class RootConfig {
         return map;
     }
     
-     @Bean()
+    
+    
+    @Bean
+    public Validator validator(){
+      return Validation.buildDefaultValidatorFactory().getValidator();
+    }
+    
+     @Bean
+     @Scope(value = WebApplicationContext.SCOPE_SESSION,proxyMode = ScopedProxyMode.TARGET_CLASS) 
      public User user(){
-         
-         return null;
+        User user = new User();
+        user.setUserName("Wasiliy");
+        user.setPassword("Cooghhg");
+         return user;
      }
+    
+    
     
     
 }

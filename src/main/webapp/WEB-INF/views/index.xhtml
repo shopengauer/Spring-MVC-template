@@ -14,21 +14,8 @@ and open the template in the editor.
     </head>
     <body>
         <div>Index</div>
+         Main Page
+         <p th:text ="${session.user.userName}"/>
         
-        <p th:text = "${#lists.size(map)}"/>
-        
-        <p th:text = "${user.firstName}"/>
-        <p th:text = "${user.lastName}"/>
-        
-          
-        
-        
-        <table>
-            <tr th:each="instance : ${map}">
-                
-                <td th:text="${instance.current}">${instance}</td>
-                 
-            </tr>
-        </table>
     </body>
 </html>
