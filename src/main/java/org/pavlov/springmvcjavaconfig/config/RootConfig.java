@@ -10,7 +10,7 @@ import java.util.Map;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import org.pavlov.springmvcjavaconfig.model.User;
+import org.pavlov.springmvcjavaconfig.web.model.User;
 import org.pavlov.springmvcjavaconfig.qualifiers.UserMap;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
@@ -28,8 +28,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  * @author pavlov
  */
 @Configuration
-@ComponentScan(basePackages={"org.pavlov.springmvcjavaconfig"},
-excludeFilters={@Filter(type=FilterType.ANNOTATION, value=EnableWebMvc.class)})
+@ComponentScan(basePackages={"org.pavlov.springmvcjavaconfig"})
+//excludeFilters={@Filter(type=FilterType.ANNOTATION, value=EnableWebMvc.class)})
 class RootConfig {
     
     @Bean
@@ -50,15 +50,13 @@ class RootConfig {
       return Validation.buildDefaultValidatorFactory().getValidator();
     }
     
-     @Bean
-     @Scope(value = WebApplicationContext.SCOPE_SESSION,proxyMode = ScopedProxyMode.TARGET_CLASS) 
-     public User user(){
-        User user = new User();
-        user.setUserName("Wasiliy");
-        user.setPassword("Cooghhg");
-         return user;
-     }
-    
+//   
+//     @Bean
+//     @Scope(value = WebApplicationContext.SCOPE_SESSION,proxyMode = ScopedProxyMode.TARGET_CLASS) 
+//     public User user(){
+//      //  User user = new User();
+//        return new User();
+//     } 
     
     
     

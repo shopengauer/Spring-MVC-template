@@ -7,10 +7,11 @@ package org.pavlov.springmvcjavaconfig.web;
 
 import java.util.Map;
 import java.util.Set;
+import javax.servlet.http.HttpSession;
 import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
 import javax.validation.Validator;
-import org.pavlov.springmvcjavaconfig.model.User;
+import org.pavlov.springmvcjavaconfig.web.model.User;
 import org.pavlov.springmvcjavaconfig.qualifiers.UserMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,8 +41,9 @@ public class HomeController {
     private  User user;
   
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String home(Model model) {
-        model.addAttribute("user", this.user);
+    public String home(Model model,HttpSession session) {
+       // session.setAttribute("user", this.user);
+         model.addAttribute("user",this.user);
         return "home";
     }
     
@@ -109,13 +111,13 @@ public class HomeController {
         this.validator = validator;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
     
     

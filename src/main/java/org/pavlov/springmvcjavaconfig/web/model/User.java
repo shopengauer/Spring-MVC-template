@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.pavlov.springmvcjavaconfig.model;
+package org.pavlov.springmvcjavaconfig.web.model;
 
  
 import javax.validation.constraints.AssertTrue;
@@ -19,7 +19,7 @@ import org.springframework.web.context.WebApplicationContext;
  *
  * @author pavlov
  */
-//@Component
+ //@Component
 //@Scope(value = WebApplicationContext.SCOPE_SESSION,proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class User{
     
