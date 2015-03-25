@@ -5,13 +5,15 @@
  */
 package org.pavlov.springmvcjavaconfig.web;
 
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import javax.servlet.http.HttpSession;
 import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
 import javax.validation.Validator;
-import org.pavlov.springmvcjavaconfig.web.model.User;
+import org.pavlov.springmvcjavaconfig.model.User;
 import org.pavlov.springmvcjavaconfig.qualifiers.UserMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,7 +23,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 /**
  *
  * @author pavlov
@@ -78,9 +81,21 @@ public class HomeController {
     }
     
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String submitRegister(@Valid User user, Errors errors) {
+    public String submitRegister(@Valid User user, BindingResult bindingResult) {
+     
+//        System.out.println(bindingResult.getFieldErrors()); 
+//        
+//        List<FieldError> err = bindingResult.getFieldErrors();
+//       // FieldError fe = new FieldError
+//       // err.
+//        
+//        for (Iterator<FieldError> iterator = err.iterator(); iterator.hasNext();) {
+//            FieldError next = iterator.next();
+//            System.out.println(next);
+//        }
         
-    if (errors.hasErrors()) {
+        
+    if (bindingResult.hasErrors()) {
             return "registerForm";
           
         } 

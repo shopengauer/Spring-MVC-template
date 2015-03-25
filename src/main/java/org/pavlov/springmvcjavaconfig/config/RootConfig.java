@@ -10,7 +10,7 @@ import java.util.Map;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import org.pavlov.springmvcjavaconfig.web.model.User;
+import org.pavlov.springmvcjavaconfig.model.User;
 import org.pavlov.springmvcjavaconfig.qualifiers.UserMap;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Bean;
