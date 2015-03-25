@@ -9,7 +9,7 @@ and open the template in the editor.
       xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Thymeleaf template</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, charset=utf-8"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
         <link rel="stylesheet" type="text/css" href="../resources/css/spring.css" th:href="@{/resources/css/spring.css}"/>
         <!-- Optional theme -->
@@ -20,7 +20,7 @@ and open the template in the editor.
     </head>
    <!--class = "form-inline"-->
    <body>
-       <!--       <h1>Ensense server</h1>-->
+       <h1 th:text = "#{welcome}"/> 
        <form th:object ="${user}" class = "form-inline bg-primary" id ="mar" method="post">
 
            <div th:class = "${#fields.hasErrors('userName')}? 'form-group has-error' : 'form-group'">

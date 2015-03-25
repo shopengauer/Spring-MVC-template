@@ -5,6 +5,9 @@
  */
 package org.pavlov.springmvcjavaconfig.config;
 
+import javax.servlet.Filter;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
@@ -27,5 +30,21 @@ public class Config extends AbstractAnnotationConfigDispatcherServletInitializer
     protected String[] getServletMappings() {
        return new String[] { "/" };    
     }
+
+    @Override
+    protected WebApplicationContext createServletApplicationContext() {
+        return super.createServletApplicationContext(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    protected Filter[] getServletFilters() {
+        
+        CharacterEncodingFilter cef = new CharacterEncodingFilter();
+        cef.setEncoding("UTF-8");
+        Filter[] filters = new Filter[]{cef};      
+        return filters; //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
     
 }

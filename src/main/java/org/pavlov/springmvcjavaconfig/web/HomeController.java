@@ -37,12 +37,18 @@ public class HomeController {
     @Value("#{userMap}")
     private  Map<String,String> userMap;
     
-    @Autowired
-    private Validator validator;
-        
-    @Autowired
+     
+    private Validator localValidator;
+    
     private  User user;
+    
+    @Autowired
+    public HomeController(Validator localValidator, User user) {
+        this.localValidator = localValidator;
+        this.user = user;
+    }
   
+   
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model,HttpSession session) {
        // session.setAttribute("user", this.user);
@@ -55,14 +61,19 @@ public class HomeController {
          
        
      Set<ConstraintViolation<User>> constraintUserUsername = 
-             validator.validateProperty(user, "userName");
-
+             localValidator.validateProperty(user, "userName");
+        for (Iterator<ConstraintViolation<User>> iterator = constraintUserUsername.iterator(); iterator.hasNext();) {
+            ConstraintViolation<User> next = iterator.next();
+            System.out.println(next.getMessage());
+        }
+        //constraintUserUsername
+     
     // errors.rejectValue("userName", "Not appropriate");
  
 //      constraintUserUsername.size();
 //              
         if (constraintUserUsername.isEmpty()) {
-           // model.addFlashAttribute(user);
+            model.addFlashAttribute(user);
             return "redirect:index";
           
         } 
@@ -118,13 +129,7 @@ public class HomeController {
         this.userMap = userMap;
     }
 
-    public Validator getValidator() {
-        return validator;
-    }
-
-    public void setValidator(Validator validator) {
-        this.validator = validator;
-    }
+    
 
 //    public User getUser() {
 //        return user;

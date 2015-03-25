@@ -9,13 +9,12 @@ and open the template in the editor.
        xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>User data</title>
-          <!--<meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8"/>-->
         <meta name="viewport" content="charset=UTF-8,width=device-width, initial-scale=1.0"/>
     </head>
     <body>
         <div>Index</div>
          Main Page
-         <p th:text ="${session.user.userName}"/>
+         <p th:text ="${user.userName}"/>
         
     </body>
 </html>

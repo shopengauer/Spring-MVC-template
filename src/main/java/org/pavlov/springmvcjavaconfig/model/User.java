@@ -9,7 +9,7 @@ package org.pavlov.springmvcjavaconfig.model;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
@@ -20,22 +20,22 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class User{
     
     @NotNull
-    @NotEmpty(message = "Enter your first name")
+    @NotBlank(message = "Enter your first name")
     //@Size(min = 2,max = 15,message = "Your name must be between 2 and 15 chars")
     private String firstName;
     
     @NotNull
-    @NotEmpty(message = "Enter your last name")
+    @NotBlank(message = "Enter your last name")
     //@Size(min = 2,max = 15)
     private String lastName;
     
     @NotNull
-    @NotEmpty
+    @NotBlank
     @Size(min = 2,max = 15,message = "Your username must be between 2 and 15 chars")
     private String userName;
     
     @NotNull
-    @NotEmpty
+    @NotBlank
     @Size(min = 5,max = 15,message = "Your password must be between 2 and 15 symbols")
     private String password;
     
